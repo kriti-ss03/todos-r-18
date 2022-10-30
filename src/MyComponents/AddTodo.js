@@ -9,8 +9,12 @@ export default function AddTodo(props) {
         e.preventDefault();
         if (!title || !desc) {
             alert("Title or Descp not given");
-        }
-        props.addTodo(title, desc);
+
+        }else
+            props.addTodo(title, desc);
+            //reseting it to blank
+            setTitle("");
+            setDesc("");
     }
 //change by setTitle arrow mthd-onChange={(e)=>setDesc(e.target.value) }
    

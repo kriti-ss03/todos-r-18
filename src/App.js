@@ -3,13 +3,24 @@ import './App.css';
 import Header from "./MyComponents/Header";
 import Todos from "./MyComponents/Todos";
 import {Footer} from "./MyComponents/Footer"; //since export as const
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddTodo from "./MyComponents/AddTodo";
 
 
 function App() {
+
+  let initTodo;
+  if (localStorage.getItem("todosarr") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todosarr"));
+  }
+
+
   const onDeletefun = (todo => {
     console.log("delete is pressed", todo);
+    
     // Deleting this way in react does not work
     // let index = todos.indexOf(todo);
     // todos.splice(index, 1);
@@ -21,23 +32,29 @@ function App() {
       return e !== todo;
     }));
     //console.log("deleted", todosarr)
-    //localStorage.setItem("todosarr", JSON.stringify(todosarr));
+    localStorage.setItem("todos", JSON.stringify(todosarr));
   });
 
 
- const [todosarr,setTodos]=useState([
-    {
-      sno: 1,
-      title: "Go to the market",
-      desc: "You need to go to the market"
-    },
-    {
-      sno: 2,
-      title: "Go to the mall", 
-      desc: "You need to go to the mall"
-    }
-  ]);
+//  const [todosarr,setTodos]=useState([
+//     {
+//       sno: 1,
+//       title: "Go to the market",
+//       desc: "You need to go to the market"
+//     },
+//     {
+//       sno: 2,
+//       title: "Go to the mall", 
+//       desc: "You need to go to the mall"
+//     }
+//   ]);
 
+   const [todosarr, setTodos] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem("todosarr", JSON.stringify(todosarr));
+  }, [todosarr])
+  
+  
   const addTodo = (t,d) => {
   
     console.log(t, d);
@@ -54,6 +71,12 @@ function App() {
     //appending newTodo after todosarr ELEMENTS by using SPREAD OPERATOR OF ES6
       setTodos([...todosarr, newtodo]);
     console.log(newtodo);
+
+    //LOCALSTORAGE---
+  // const [todosarr, setTodos] = useState(initTodo);
+  // useEffect(() => {
+  //   localStorage.setItem("todosarr", JSON.stringify(todosarr));
+  // }, [todosarr])
   }
 
   
