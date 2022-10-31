@@ -10,9 +10,9 @@ export default function Todos(props) {
         
         props.todos.map(item => {
           return (
-            <div>
-              <TodoItem todoitem={item} onDelete={props.onDelete} key={item.sno} /> <hr />
-            </div>);
+            
+              <TodoItem todoitem={item} onDelete={props.onDelete} key={item.sno} />
+            );
         }
           )
         }

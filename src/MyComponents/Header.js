@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 
 export default function Header(props) {
@@ -7,16 +8,17 @@ export default function Header(props) {
     <nav className="navbar navbar-lg bg-light navbar-expand-md ">
 
   <div className="container-fluid">
-    <a className="navbar-brand my-3 mx-3" href="#">{props.title}</a>
-   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTrogglerDemo02" aria-controls="navbarTrogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <Link className="navbar-brand my-3 mx-3" to="/">{props.title}</Link>
+
+   <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTrogglerDemo02" aria-controls="navbarTrogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
          
           {/* <!-- INSIDE TOGGLER --> */}
-          <div class="collapse navbar-collapse" id="navbarTrogglerDemo02">
-             <ul class="navbar-nav ms-auto">
+          <div className="collapse navbar-collapse" id="navbarTrogglerDemo02">
+             <ul className="navbar-nav ms-auto">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">About</a>
+          <Link className="nav-link active" aria-current="page" to="/about">About</Link>
         </li>
         
           </ul>

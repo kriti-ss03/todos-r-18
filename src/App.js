@@ -5,7 +5,13 @@ import Todos from "./MyComponents/Todos";
 import {Footer} from "./MyComponents/Footer"; //since export as const
 import React, { useState, useEffect } from 'react';
 import AddTodo from "./MyComponents/AddTodo";
+import About from "./MyComponents/About";
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 function App() {
 
@@ -80,15 +86,37 @@ function App() {
   }
 
   
-  return (
-    <div>
-      <Header title="TodosList" searchBar={false} />
-      <AddTodo addTodo={addTodo} />
-      <Todos todos={todosarr} onDelete={onDeletefun}/>
-      <Footer/>
-    </div>
+
+  return ( 
+    <> 
+    <Router>
+      <Header title="TodosList" searchBar={false} /> 
+      <Routes>
+          <Route exact path='/' element={
+            
+            <>
+            <AddTodo addTodo={addTodo} />
+             <Todos todos={todosarr} onDelete={onDeletefun}/>
+            </>
+          }> 
+          </Route>
+          <Route exact path='/about' element={ <About />}></Route>
     
+        </Routes> 
+      <Footer />
+    </Router>
+    </>
   );
+
+  // return (
+  //   <div>
+  //     <Header title="TodosList" searchBar={false} />
+  //     <AddTodo addTodo={addTodo} />
+  //     <Todos todos={todosarr} onDelete={onDeletefun}/>
+  //     <Footer/>
+  //   </div>
+    
+  // );
 }
 
 export default App;
